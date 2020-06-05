@@ -38,9 +38,9 @@ def img(urls):               # 首先做一个单个原图爬取的爬虫
 def our_30(urls):       # 每30个链接的爬取
     res = requests.get(url, headers=headers)
     all_url = []
-    # 通过json获取到所有少于4张的链接
+    # 通过json获取到所有的图片链接
     for i in json.loads(res.text)['data']:
-        if i['pageCount'] <= 4:
+        if i['type'] == '"illust"':
             c = re.findall("original': '(ht.*?)'}", str(i['imageUrls']))
             all_url.append(c)
     for a in all_url:
